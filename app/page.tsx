@@ -919,24 +919,59 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* MOBILE BOTTOM NAVIGATION BAR */}
-      <nav className={`fixed bottom-0 inset-x-0 mx-auto w-full md:max-w-lg border-t px-6 py-2.5 flex items-center justify-between shadow-[0_-4px_16px_rgba(0,0,0,0.08)] z-40 backdrop-blur-md transition-colors ${
-        isDarkMode
-          ? "bg-slate-900/95 border-slate-800 text-slate-400"
-          : "bg-white/95 border-gray-200/80 text-gray-400"
+      {/* LEFT SIDEBAR NAVIGATION */}
+      <aside className={`hidden md:flex flex-col w-64 border-r sticky top-0 h-screen p-6 justify-between shrink-0 transition-colors ${
+        isDarkMode ? "bg-slate-900 border-slate-800" : "bg-white border-gray-100 shadow-xs"
       }`}>
-        {/* 1. Home */}
-        <button
-          onClick={() => setActiveTab("home")}
-          className={`flex flex-col items-center gap-1 transition ${
-            activeTab === "home" ? "text-green-700 font-bold" : "hover:text-gray-600 dark:hover:text-slate-200"
-          }`}
-        >
-          <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-          </svg>
-          <span className="text-[10px]">Home</span>
-        </button>
+        <div className="space-y-8">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2.5 group">
+            <div className="w-9 h-9 rounded-xl bg-green-700 flex items-center justify-center text-white shadow-sm">
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M17 8C8 10 5.9 16.17 3.82 21.34L5.71 22l1-2.3A9.49 9.49 0 0 0 12 21c7 0 11-8 11-15 0-3-2-5-5-5-4 0-7 2-8 5 .9-1.2 2.5-2 4-2 3.8 0 7 3.2 7 7-3 0-5.5-1.5-7-4 0 2 1.5 5 3 6z" />
+              </svg>
+            </div>
+            <span className="font-extrabold text-2xl tracking-tight text-green-700">
+              FIDWEL
+            </span>
+          </Link>
+
+          {/* Nav Links */}
+          <nav className="flex flex-col gap-1 text-sm font-semibold">
+            <Link href="/" className="px-3.5 py-2.5 rounded-xl bg-green-700 text-white font-bold transition">
+              Home
+            </Link>
+            <Link href="/products" className={`px-3.5 py-2.5 rounded-xl transition ${isDarkMode ? "text-slate-300 hover:bg-slate-800" : "text-gray-600 hover:bg-gray-100"}`}>
+              Marketplace
+            </Link>
+            <Link href="/products" className={`px-3.5 py-2.5 rounded-xl transition ${isDarkMode ? "text-slate-300 hover:bg-slate-800" : "text-gray-600 hover:bg-gray-100"}`}>
+              Categories
+            </Link>
+            <Link href="/orders" className={`px-3.5 py-2.5 rounded-xl transition ${isDarkMode ? "text-slate-300 hover:bg-slate-800" : "text-gray-600 hover:bg-gray-100"}`}>
+              Orders
+            </Link>
+            <Link href="/vendor/register" className={`px-3.5 py-2.5 rounded-xl transition ${isDarkMode ? "text-slate-300 hover:bg-slate-800" : "text-gray-600 hover:bg-gray-100"}`}>
+              Become a Vendor
+            </Link>
+          </nav>
+        </div>
+
+        {/* Sidebar Footer */}
+        <div className="space-y-3 pt-4 border-t border-gray-100 dark:border-slate-800">
+          <Link href={accountDestination} className="flex items-center gap-3 p-2 rounded-xl transition hover:bg-gray-100 dark:hover:bg-slate-800">
+            <div className="w-9 h-9 rounded-full bg-green-100 text-green-800 flex items-center justify-center font-bold overflow-hidden">
+              {avatarUrl ? <img src={avatarUrl} alt="" className="w-full h-full object-cover" /> : (userEmail?.[0]?.toUpperCase() ?? "👤")}
+            </div>
+            <div className="truncate text-xs">
+              <p className="font-bold truncate">{userEmail ?? "Sign in"}</p>
+              <p className="text-gray-400 text-[10px]">View Profile</p>
+            </div>
+          </Link>
+          <button onClick={toggleTheme} className="w-full py-2 px-3 rounded-xl border border-gray-200 dark:border-slate-800 text-xs font-semibold flex items-center justify-center gap-2">
+            {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+          </button>
+        </div>
+      </aside>
 
         {/* 2. Categories */}
         <button
