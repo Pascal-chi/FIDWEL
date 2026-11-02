@@ -971,51 +971,7 @@ export default function Home() {
             {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
           </button>
         </div>
-      </aside>
-
-        {/* 2. Categories */}
-        <button
-          onClick={() => {
-            setActiveTab("categories");
-            router.push("/products");
-          }}
-          className={`flex flex-col items-center gap-1 transition ${
-            activeTab === "categories" ? "text-green-700 font-bold" : "hover:text-gray-600 dark:hover:text-slate-200"
-          }`}
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-            <rect x="3" y="3" width="7" height="7" rx="2" />
-            <rect x="14" y="3" width="7" height="7" rx="2" />
-            <rect x="14" y="14" width="7" height="7" rx="2" />
-            <rect x="3" y="14" width="7" height="7" rx="2" />
-          </svg>
-          <span className="text-[10px]">Categories</span>
-        </button>
-
-        {/* 3. Cart Trigger */}
-        <button
-          onClick={() => {
-            setActiveTab("cart");
-            setIsCartOpen(true);
-          }}
-          className={`flex flex-col items-center gap-1 transition relative ${
-            activeTab === "cart" || isCartOpen ? "text-green-700 font-bold" : "hover:text-gray-600 dark:hover:text-slate-200"
-          }`}
-        >
-          <div className="relative">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
-              <circle cx="9" cy="21" r="1" />
-              <circle cx="20" cy="21" r="1" />
-              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-            </svg>
-            {totalCartCount > 0 && (
-              <span className="absolute -top-1.5 -right-2 bg-emerald-600 text-white text-[9px] w-3.5 h-3.5 rounded-full flex items-center justify-center font-bold">
-                {totalCartCount}
-              </span>
-            )}
-          </div>
-          <span className="text-[10px]">Cart</span>
-        </button>
+      
 
         {/* 4. Orders */}
         <button
